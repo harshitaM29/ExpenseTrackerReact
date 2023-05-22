@@ -30,7 +30,7 @@ const expenses = [
     <div>
       <h2>Let's get started!</h2>
       { expenses.map((ex) =>(
-        <ExpenseItem title={ex.title} location={ex.location} amount={ex.amount} date={ex.date}></ExpenseItem>
+        <ExpenseItem title={ex.title} location={ex.location} amount={ex.amount} date={ex.date} />
         
 ))}  
       
