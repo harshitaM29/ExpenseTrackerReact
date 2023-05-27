@@ -2,26 +2,31 @@ import './ExpenseForm.css'
 
 const ExpenseForm = () =>
 {
-    const addExpenses = () =>
+    const addExpenses = (event) =>
     {
-        const title = document.getElementById('title').value;
-        const amount = document.getElementById('amount').value;
-        const date = document.getElementById('date').value;
-        console.log(title +" " + amount +" " + date) 
+        console.log(event.target.value)
     }
     return (
-    <div className='expense-form'>
-        <form onChange={addExpenses}>
-            <label>Expense Title</label><br />
-            <input type="text" name="title" id="title" /><br />
-            <label>Expense Amount</label><br />
-            <input type="number" name="amount" id="amount" /><br />
-            <label>Expense Date</label><br />
-            <input type="date" name="date" id="date" /><br />
-            <input type="submit" value="Change" />
+         <form onChange={addExpenses}>
+        <div className='new-expense__controls'>
+            <div className='new-expense__control'>
+                <label>Expense Title</label><br />
+                <input type="text" id="title" />
+            </div>
+            <div className='new-expense__control'>
+                <label>Expense Amount</label><br />
+                <input type="number" id="amount" min="0.01" step="0.01" />
+            </div>
+            <div className='new-expense__control'>
+                <label>Expense Date</label><br />
+                <input type="date" id="date" min="2019-01-01" max="2023-12-31" />
+            </div>
+            
+        </div>
+        <div className='new-expense__actions'>
+               <button type="submit">Add Expense</button>
+            </div>
         </form>
-        </div>  
-   
     )
 };
 
