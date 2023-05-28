@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
+
 const expenses = [
   {
     id: 'e1',
@@ -27,10 +28,17 @@ const expenses = [
     date: new Date(2021, 5, 12),
   },
 ];
+const [list, setList] = useState(expenses);
+
+const addExpenseHandler = expense => {
+  const newList = list.concat(expense)
+
+  setList(newList);
+}
   return (
     <div>
-        <NewExpense />
-        <Expenses items={expenses} />
+        <NewExpense onAddExpense={addExpenseHandler}/>
+        <Expenses items={list} />
        
      
     </div>
