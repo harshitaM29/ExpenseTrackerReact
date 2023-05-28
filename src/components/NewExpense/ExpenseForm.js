@@ -3,23 +3,71 @@ import './ExpenseForm.css'
 
 const ExpenseForm = () =>
 {
-    const [enteredTitle, setEnteredTitle] = useState('');
-    const[enteredAmount, setEnteredAmount] = useState('');
-    const[enteredDate, setEnteredDate] = useState('');
+    // const [enteredTitle, setEnteredTitle] = useState('');
+    // const[enteredAmount, setEnteredAmount] = useState('');
+    // const[enteredDate, setEnteredDate] = useState('');
+
+    const [userInput,setUserInput] = useState({
+        enteredtitle: '',
+        enteredAmount: '',
+        enteredDate: ''
+    })
 
     const updateTitle = (e) =>{
-        setEnteredTitle(e.target.value)
+
+        // setUserInput({ 
+        //     ...userInput,
+        //    enteredtitle: e.target.value,
+           
+        // })
+        setUserInput((prevState) => {
+            return {...prevState, enteredtitle:e.target.value};
+        })
     }
 
     const updateAmount = (e) =>{
-        setEnteredAmount(e.target.value)
+        // setUserInput({ 
+        //     ...userInput,
+        //    enteredAmount: e.target.value,
+           
+        // })
+        setUserInput((prevState) => {
+            return {...prevState, enteredAmount:e.target.value};
+        })
+    }
+    const addExpense = (e) => {
+        e.preventDefault();
+        const expenseDetails = {
+            title: userInput.enteredtitle,
+            amount: userInput.enteredAmount,
+            date: new Date(userInput.enteredDate)
+        }
+        let day = expenseDetails.date.getDate();
+        let month = expenseDetails.date.getMonth();
+        let year = expenseDetails.date.getFullYear();
+        const form = month + "/" + day + "/" + year;
+       
+        let list = document.getElementById('myList');
+        let li = document.createElement('li');
+        li.textContent = "Title=" +expenseDetails.title + " Amount=" +expenseDetails.amount+ " Date="+ form;
+        list.append(li);
+        console.log(expenseDetails);
+
     }
 
     const updateDate = (e) =>{
-        setEnteredDate(e.target.value)
+        // setUserInput({ 
+        //     ...userInput,
+        //    enteredDate: e.target.value,
+           
+        // })
+        setUserInput((prevState) => {
+            return {...prevState, enteredDate:e.target.value};
+        })
     }
     return (
-         <form>
+        <div>
+         <form onSubmit={addExpense}>
         <div className='new-expense__controls'>
             <div className='new-expense__control'>
                 <label>Expense Title</label><br />
@@ -39,6 +87,9 @@ const ExpenseForm = () =>
                <button type="submit">Add Expense</button>
             </div>
         </form>
+     
+        <ul id="myList"></ul>
+        </div>
     )
 };
 
