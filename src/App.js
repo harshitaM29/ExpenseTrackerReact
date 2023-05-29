@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
-const App = () => {
-
-const expenses = [
+const DUMMY_EXPENSES = [
   {
     id: 'e1',
     title: 'Toilet Paper',
@@ -28,17 +26,24 @@ const expenses = [
     date: new Date(2021, 5, 12),
   },
 ];
-const [list, setList] = useState(expenses);
+
+const App = () => {
+
+
+const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
 const addExpenseHandler = expense => {
-  const newList = list.concat(expense)
+  setExpenses(preExpenses => {
+    return [expense,...preExpenses]
+  })
+  // const newList = list.concat(expense)
 
-  setList(newList);
+  // setList(newList);
 }
   return (
     <div>
         <NewExpense onAddExpense={addExpenseHandler}/>
-        <Expenses items={list} />
+        <Expenses items={expenses} />
        
      
     </div>
