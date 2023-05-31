@@ -6,6 +6,7 @@ const ExpenseForm = (props) =>
     const [enteredTitle, setEnteredTitle] = useState('');
     const[enteredAmount, setEnteredAmount] = useState('');
     const[enteredDate, setEnteredDate] = useState('');
+    const [show, setShow] = useState(false);
 
     // const [userInput,setUserInput] = useState({
     //     enteredtitle: '',
@@ -72,8 +73,14 @@ const ExpenseForm = (props) =>
         //     return {...prevState, enteredDate:e.target.value};
         // })
     }
+    const cancelForm = (e) => {
+        
+    }
     return (
+       
+           
         <div>
+            
          <form onSubmit={addExpense}>
         <div className='new-expense__controls'>
             <div className='new-expense__control'>
@@ -91,12 +98,14 @@ const ExpenseForm = (props) =>
             
         </div>
         <div className='new-expense__actions'>
+                <button onClick={cancelForm}>Cancel</button>
                <button type="submit">Add Expense</button>
             </div>
         </form>
      
         <ul id="myList"></ul>
         </div>
+       
     )
 };
 
