@@ -6,7 +6,6 @@ const ExpenseForm = (props) =>
     const [enteredTitle, setEnteredTitle] = useState('');
     const[enteredAmount, setEnteredAmount] = useState('');
     const[enteredDate, setEnteredDate] = useState('');
-    const [show, setShow] = useState(false);
 
     // const [userInput,setUserInput] = useState({
     //     enteredtitle: '',
@@ -36,6 +35,7 @@ const ExpenseForm = (props) =>
         // setUserInput((prevState) => {
         //     return {...prevState, enteredAmount:e.target.value};
         // })
+
     }
     const addExpense = (e) => {
         e.preventDefault();
@@ -49,6 +49,7 @@ const ExpenseForm = (props) =>
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
+        props.onCancel();
         // let day = expenseDetails.date.getDate();
         // let month = expenseDetails.date.getMonth();
         // let year = expenseDetails.date.getFullYear();
@@ -74,7 +75,7 @@ const ExpenseForm = (props) =>
         // })
     }
     const cancelForm = (e) => {
-        
+        props.onCancel();
     }
     return (
        
@@ -98,7 +99,7 @@ const ExpenseForm = (props) =>
             
         </div>
         <div className='new-expense__actions'>
-                <button onClick={cancelForm}>Cancel</button>
+                <button type= "button" onClick={cancelForm}>Cancel</button>
                <button type="submit">Add Expense</button>
             </div>
         </form>
